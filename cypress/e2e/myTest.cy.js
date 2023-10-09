@@ -69,6 +69,15 @@ describe("TestCases", () => {
     cy.get("#ui-id-6").click();
     let RandomToSelect = Math.floor(Math.random() * 4);
     cy.get(".product-items").find(".product-item").eq(RandomToSelect).click();
+    cy.get(".stock > span")
+    .invoke("text")
+    .then((Text) => {
+      if (Text == "In stock") {
+        cy.get("#product-addtocart-button").click();
+      } else {
+        alert("sorry this item is not there");
+      }
+    });
     cy.get("#product-addtocart-button").click();
   });
 });
